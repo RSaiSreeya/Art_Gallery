@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Artwork Directory</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('bg.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      list-style: none;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0 10px;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .form-area {
+      width: 100%;
+      max-width: 600px;
+      background-color: #fdf7f2;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+
+    .form-area input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .registry-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .registry-buttons button {
+      flex: 1 1 48%;
+      min-width: 120px;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #4a3f35;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .registry-buttons button:hover {
+      background-color: #6e584d;
+    }
+
+    .gallery-area {
+      flex: 1 1 350px;
+      max-width: 480px;
+    }
+
+    .auction-card {
+      background-color: #fdf1e6;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .auction-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .auction-card p {
+      margin: 4px 0;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .edit-button {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #6e584d;
+    }
+
+    .edit-button:hover {
+      color: #3a2e25;
+    }
+
+    .mystery-canvas {
+      text-align: center;
+      margin: 40px auto 60px;
+      background-color: #fdf7f2;
+      padding: 30px 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .mystery-canvas h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .mystery-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .blurred-img {
+      width: 80%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+      filter: blur(12px);
+      opacity: 0.8;
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    .blurred-img:hover {
+      filter: blur(4px);
+      opacity: 1;
+    }
+
+    .mystery-caption {
+      margin-top: 15px;
+      font-style: italic;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Gallery Home</a></li>
+        <li><a href="aboutus.html">The Curator</a></li>
+        <li><a href="crud.html">Artwork Directory</a></li>
+        <li><a href="analytics.html">Gallery Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Artwork Directory</h1>
+
+  <main>
+    <div class="form-area">
+      <input type="text" id="title" placeholder="Artwork Title">
+      <input type="text" id="artist" placeholder="Artist Name">
+      <input type="number" id="year" placeholder="Year of Creation">
+      <div class="registry-buttons">
+        <button onclick="addToGallery()">🖌️ Add</button>
+        <button onclick="viewGallery()">🖼️ View</button>
+        <button onclick="updateArtwork()">🪶 Edit</button>
+        <button onclick="removeArtwork()">🗑️ Delete</button>
+      </div>
+    </div>
+
+    <div class="gallery-area" id="galleryList">
+      <!-- Artworks will render here -->
+    </div>
+  </main>
+
+  <section class="mystery-canvas">
+    <h2>🧩 Mystery Canvas</h2>
+    <div class="mystery-box">
+      <img src="mystery.png" alt="Mystery Artwork" class="blurred-img">
+      <p class="mystery-caption">Coming Soon: A masterpiece yet to be unveiled...</p>
+    </div>
+  </section>
+
+  <script>
+    let artworks = [];
+    let selectedIndex = -1;
+
+    function renderGallery() {
+      const list = document.getElementById("galleryList");
+      list.innerHTML = "";
+      artworks.forEach((art, index) => {
+        const card = document.createElement("div");
+        card.className = "auction-card";
+        card.innerHTML = `
+          <button class="edit-button" onclick="selectForEdit(${index})">✏️</button>
+          <h3>${art.title}</h3>
+          <p>by ${art.artist} (${art.year})</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function addToGallery() {
+      const title = document.getElementById("title").value.trim();
+      const artist = document.getElementById("artist").value.trim();
+      const year = document.getElementById("year").value.trim();
+
+      if (title && artist && year) {
+        artworks.push({ title, artist, year });
+        clearForm();
+        renderGallery();
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+
+    function viewGallery() {
+      renderGallery();
+    }
+
+    function selectForEdit(index) {
+      const art = artworks[index];
+      document.getElementById("title").value = art.title;
+      document.getElementById("artist").value = art.artist;
+      document.getElementById("year").value = art.year;
+      selectedIndex = index;
+    }
+
+    function updateArtwork() {
+      if (selectedIndex !== -1) {
+        artworks[selectedIndex] = {
+          title: document.getElementById("title").value.trim(),
+          artist: document.getElementById("artist").value.trim(),
+          year: document.getElementById("year").value.trim()
+        };
+        clearForm();
+        selectedIndex = -1;
+        renderGallery();
+      } else {
+        alert("Click ✏️ on an artwork to edit.");
+      }
+    }
+
+    function removeArtwork() {
+      if (selectedIndex !== -1) {
+        if (confirm("Are you sure you want to remove this?")) {
+          artworks.splice(selectedIndex, 1);
+          clearForm();
+          selectedIndex = -1;
+          renderGallery();
+        }
+      } else {
+        alert("Click ✏️ on an artwork to remove.");
+      }
+    }
+
+    function clearForm() {
+      document.getElementById("title").value = "";
+      document.getElementById("artist").value = "";
+      document.getElementById("year").value = "";
+    }
+
+    window.onload = () => {
+      artworks.push(
+        { title: "Sunlit Silence", artist: "Iris Kellan", year: 2020 },
+        { title: "Fragmented Memory", artist: "Ravi Elan", year: 2019 },
+        { title: "Whispers of the Frame", artist: "Noa Ferrell", year: 2021 }
+      );
+      renderGallery();
+    };
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

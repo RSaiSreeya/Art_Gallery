@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Curator</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-image: url('bg.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      margin: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1.center-heading {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-top: 40px;
+      color: #333;
+    }
+
+    .about-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #fdf7f2;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      border: 1px solid #e5d8ca;
+    }
+
+    .center-image {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .square-photo {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+
+    .tech-list {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f4eade;
+      border-radius: 10px;
+    }
+
+    .tech-list h3 {
+      margin-top: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    .tech-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .tech-list li {
+      background-color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .github-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .github-link a {
+      color: #4a3f35;
+      font-weight: bold;
+      text-decoration: none;
+      background-color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .github-link a:hover {
+      background-color: #eee4d5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Gallery Home</a></li>
+        <li><a href="aboutus.html">The Curator</a></li>
+        <li><a href="crud.html">Artwork Directory</a></li>
+        <li><a href="analytics.html">Gallery Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1 class="center-heading">The Face Behind This Project</h1>
+
+  <div class="about-container">
+    <div class="center-image">
+      <img src="author.png" alt="Sai Sreeya Ramasahayam" class="square-photo">
+    </div>
+
+    <div class="about-text">
+      <p>Hello! I’m <strong>Sai Sreeya Ramasahayam</strong>, a student currently pursuing the Application Development for Analytics course at the University of South Florida.</p>
+
+      <p>This website was designed and developed as part of my learning journey. Tasked with building a static website based on a content theme, I chose to create an Art Gallery platform that blends simplicity, elegance, and functionality.</p>
+
+      <p>The development process began with careful planning of the layout and purpose of each page—from creating an inviting homepage, to showcasing a profile, simulating data operations, and visualizing art-related trends. I used HTML to build the foundation, CSS to define the aesthetic, and selected a calm beige theme to mirror the ambiance of an art exhibit.</p>
+
+      <p>For interactivity, I used JavaScript. For analytics, I integrated Chart.js. The project was built using Visual Studio Code, versioned via GitHub, and tested live with Live Server — making development iterative and effective.</p>
+
+      <p>This experience sharpened my front-end skills and deepened my appreciation for thoughtful design. It represents a meaningful step in my path as a developer, one I look forward to expanding upon.</p>
+    </div>
+
+    <div class="tech-list">
+      <h3>🛠 Technologies Used</h3>
+      <ul>
+        <li>✔ HTML</li>
+        <li>✔ CSS</li>
+        <li>✔ JavaScript</li>
+        <li>✔ Chart.js</li>
+        <li>✔ GitHub</li>
+        <li>✔ Visual Studio Code</li>
+      </ul>
+    </div>
+
+    <div class="github-link">
+      <p>📂 View the source code:</p>
+      <a href="https://github.com/RSaiSreeya/Assignment_LookAndFeel" target="_blank">GitHub Repository</a>
+    </div>
+  </div>
+</body>
+</html>
+

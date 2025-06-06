@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas to Gavel: Auction Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Gallery Home</a></li>
+                <li><a href="aboutus.html">The Curator</a></li>
+                <li><a href="crud.html">Auction Registry</a></li>
+                <li><a href="analytics.html">Auction Trends</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="center-heading">Canvas to Gavel: Auction Intelligence</h1>
+
+        <div class="chart-grid">
+
+            <div class="chart-card">
+                <h3>Most Featured Styles</h3>
+                <div class="chart-wrapper">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Era Representation</h3>
+                <div class="chart-wrapper">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Bidding Trends Over Time</h3>
+                <div class="chart-wrapper">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Genre Distribution</h3>
+                <div class="chart-wrapper">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Style Trait Map</h3>
+                <div class="chart-wrapper">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Size vs Popularity</h3>
+                <div class="chart-wrapper">
+                    <canvas id="bubbleChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Chart.js code (same as before)...
+
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Modern', 'Renaissance', 'Impressionism', 'Abstract', 'Surrealism'],
+                datasets: [{
+                    label: 'Number of Artworks',
+                    data: [14, 10, 8, 6, 4],
+                    backgroundColor: '#36A2EB'
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Classical', 'Modern', 'Contemporary', 'Baroque'],
+                datasets: [{
+                    label: 'Art Periods',
+                    data: [25, 35, 20, 20],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023'],
+                datasets: [{
+                    label: 'Sales in $K',
+                    data: [10, 25, 40, 30, 50],
+                    fill: false,
+                    borderColor: '#9966FF',
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(document.getElementById('doughnutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Portrait', 'Landscape', 'Still Life', 'Abstract'],
+                datasets: [{
+                    label: 'Genres',
+                    data: [20, 30, 25, 25],
+                    backgroundColor: ['#FF9F40', '#FF6384', '#36A2EB', '#4BC0C0']
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Color', 'Detail', 'Emotion', 'Symbolism', 'Texture'],
+                datasets: [{
+                    label: 'Modern Style',
+                    data: [7, 6, 8, 5, 7],
+                    fill: true,
+                    backgroundColor: 'rgba(54,162,235,0.2)',
+                    borderColor: '#36A2EB'
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(document.getElementById('bubbleChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Artwork Sizes',
+                    data: [
+                        { x: 40, y: 60, r: 10 },
+                        { x: 60, y: 70, r: 15 },
+                        { x: 30, y: 50, r: 8 },
+                        { x: 80, y: 90, r: 12 }
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: '#FF6384'
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Width (inches)' },
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: { display: true, text: 'Height (inches)' },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Width: ${context.raw.x}, Height: ${context.raw.y}, Size: ${context.raw.r}`;
+                            }
+                        }
+                    }
+                },
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
+
