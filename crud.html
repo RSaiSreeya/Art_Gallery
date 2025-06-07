@@ -122,7 +122,7 @@
       right: 10px;
       background: transparent;
       border: none;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
       color: #6e584d;
     }
@@ -195,10 +195,10 @@
       <input type="text" id="artist" placeholder="Artist Name">
       <input type="number" id="year" placeholder="Year of Creation">
       <div class="registry-buttons">
-        <button onclick="addToGallery()">🖌️ Add</button>
-        <button onclick="viewGallery()">🖼️ View</button>
-        <button onclick="updateArtwork()">🪶 Edit</button>
-        <button onclick="removeArtwork()">🗑️ Delete</button>
+        <button onclick="addToGallery()">Add</button>
+        <button onclick="viewGallery()">View</button>
+        <button onclick="updateArtwork()">Edit</button>
+        <button onclick="removeArtwork()">Delete</button>
       </div>
     </div>
 
@@ -208,7 +208,7 @@
   </main>
 
   <section class="mystery-canvas">
-    <h2>🧩 Mystery Canvas</h2>
+    <h2>&#129513; Mystery Canvas</h2>
     <div class="mystery-box">
       <img src="mystery.png" alt="Mystery Artwork" class="blurred-img">
       <p class="mystery-caption">Coming Soon: A masterpiece yet to be unveiled...</p>
@@ -226,7 +226,7 @@
         const card = document.createElement("div");
         card.className = "auction-card";
         card.innerHTML = `
-          <button class="edit-button" onclick="selectForEdit(${index})">✏️</button>
+          <button class="edit-button" onclick="selectForEdit(${index})">&#9998;</button>
           <h3>${art.title}</h3>
           <p>by ${art.artist} (${art.year})</p>
         `;
@@ -271,7 +271,7 @@
         selectedIndex = -1;
         renderGallery();
       } else {
-        alert("Click ✏️ on an artwork to edit.");
+        alert("Click ✎ on an artwork to edit.");
       }
     }
 
@@ -284,7 +284,7 @@
           renderGallery();
         }
       } else {
-        alert("Click ✏️ on an artwork to remove.");
+        alert("Click ✎ on an artwork to remove.");
       }
     }
 
@@ -305,6 +305,7 @@
   </script>
 </body>
 </html>
+
 
 
 
